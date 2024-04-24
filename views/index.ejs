@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href='https://fonts.googleapis.com/css?family=Poppins' rel='stylesheet'>
+    <link rel="stylesheet" href="main.css">
+    <title>Weather App</title>
+</head>
+<body>
+    <div class="card">
+        <div class="search">
+            <input id="cityInput" type="text" placeholder="Enter your city" spellcheck="false" >
+            <button onclick="searchWeather()">Search</button>
+        </div>
+        <br>
+        <div class="Weather">
+            <% console.log('Weather Condition:', weatherData.weatherCondition); %>
+            <% if(weatherData.weatherCondition === 'Clear'){%>
+            <img src="images/Clear.png" width="30%" height="90px" alt="Clear">
+
+          <%  }else if(weatherData.weatherCondition === 'Cloudy'){%>
+            <img src="images/cloudy.png" width="30%" height="90px" alt="Cloudy">
+         <% }else if(weatherData.weatherCondition === 'Rain'){%>
+            <img src="images/rain.png" width="30%" height="90px" alt="Rain">
+         <%}else{%>
+            <img src="images/cloudy.png "width="30%" height="90px" alt="Weather icon">
+         <%} %>
+            <h1 class="temp"><%= weatherData.temperature %></h1>
+            <h2 class="Hyderabad"><%= weatherData.city %></h2>
+        </div>
+        <div class="details">
+            <div class="col">
+                <img src="images/Humidity.png"width="65%" height="70px" alt="Humidity">
+                <div>
+                    <p class="humidity"><%= weatherData.humidity %></p>
+                    <p>Humidity</p>
+                </div>
+            </div>
+            <div class="col">
+                <img src="images/wind.png" width="70%" height="90px" alt="Wind">
+                <div>
+                    <p class="wind"><%=weatherData.windSpeed %>km/h</p>
+                    <p>Wind Speed</p>
+                </div>
+            </div>
+           
+        </div>
+    </div>
+</body>
+<script>
+     function searchWeather() {
+            const city = document.getElementById('cityInput').value.trim();
+            if (city) {
+                window.location.href = `/?city=${encodeURIComponent(city)}`;  // Redirect to URL with city query parameter
+            }
+        }
+</script>
+</html>
